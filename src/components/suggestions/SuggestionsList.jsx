@@ -20,11 +20,7 @@ const SuggestionsList = () => {
       authority: 'water supply',
       avatar: 'https://www.developmentaid.org/files/organizationLogos/department-of-water-supply-and-sanitation-government-of-punjab-144726.jpg',
     },
-    {
-      id: '4',
-      authority: 'health',
-      avatar: 'https://www.cheggindia.com/wp-content/uploads/2023/10/pwd-full-form-1024x543.png',
-    },
+    
     {
       id: '5',
       authority: 'fire service',
@@ -39,48 +35,63 @@ const SuggestionsList = () => {
       id: '7',
       authority: 'parks recreation',
       avatar: 'https://www.cheggindia.com/wp-content/uploads/2023/10/pwd-full-form-1024x543.png',
-    },
-    {
-      id: '8',
-      authority: 'Education',
-      avatar: 'https://swachhbharatmission.gov.in/shs2023/SHS2023/images/logos-jal.png',
-    },
-    {
-      id: '9',
-      authority: 'police',
-      avatar: 'https://www.developmentaid.org/files/organizationLogos/department-of-water-supply-and-sanitation-government-of-punjab-144726.jpg',
     }
+   
+    
   ];
 
   return (
-    <div className="bg-white">
-      {/* Suggestions */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <p className="text-gray-500 font-semibold text-sm">Different Authorities</p>
-          <button className="text-sm text-gray-900 font-semibold hover:text-gray-600">
-            See All
-          </button>
-        </div>
 
-        {suggestions.map((suggestion) => (
-          <div key={suggestion.id} className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <img 
-                src={suggestion.avatar} 
-                alt={suggestion.authority} 
-                className="w-10 h-10 rounded-full object-cover"
-              />
-              <div>
-                <p className="font-semibold text-sm">{suggestion.authority}</p>
-              </div>
-            </div>
-            <button className="text-blue-500 text-sm font-semibold hover:text-blue-700">
-              View
-            </button>
-          </div>
-        ))}
+    <div className="bg-white p-2">
+      <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 mb-4">
+        <span className="text-lg font-bold">+</span>
+        Report Issue
+      </button>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-4">
+        <p className="text-gray-500 font-semibold text-sm">Different Authorities</p>
+        <button className="text-sm text-gray-900 font-semibold hover:text-gray-600">
+          See All
+        </button>
       </div>
+
+      {/* Scrollable Grid Container */}
+      <div
+        className="overflow-y-auto hide-scrollbar"
+        style={{ maxHeight: '600px' }}
+      >
+        <div className="grid grid-cols-2 gap-4">
+          {suggestions.map((suggestion) => (
+            <div
+              key={suggestion.id}
+              className="bg-gray-100 rounded-lg shadow-md p-4 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-200"
+            >
+              <img
+                src={suggestion.avatar}
+                alt={`Avatar for ${suggestion.authority}`}
+                className="w-16 h-16 rounded-full object-cover mb-2"
+              />
+              <p className="font-semibold text-sm mb-2 capitalize">{suggestion.authority}</p>
+              <button className="text-blue-500 text-sm font-semibold hover:text-blue-700">
+                View
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hide scrollbar styles */}
+      <style>
+        {`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .hide-scrollbar {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+          }
+        `}
+      </style>
     </div>
   );
 };
